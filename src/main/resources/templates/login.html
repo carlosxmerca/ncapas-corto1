@@ -1,4 +1,69 @@
 <!DOCTYPE html>
-<html>
-	<h1>LOGIN</h1>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <title>Login</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-family: 'Roboto', sans-serif;
+      }
+
+      .login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 50vw;
+        height: 70vh;
+        background-color: #adbfff;
+        border-radius: 15px;
+      }
+
+      .login-btn {
+        border: 1px solid #124578;
+        color: #124578;
+        background-color: #fff;
+        padding: 1vh 3vw 1vh 3vw;
+        border-radius: 15px;
+      }
+
+      input {
+        border: 0;
+        width: 100%;
+        padding: 1vh 1vw 1vh 1vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Bienvenido</h2>
+      
+      <form action="/auth" method="POST">
+		<div class="username-container">
+	        <p class="login-label">Nombre de usuario:</p>
+	        <input type="text" name="code" />
+	      </div>
+	      <div class="pass-container">
+	        <p class="login-label">Contraseña:</p>
+	        <input type="password" name="pass" />
+	      </div>
+	      <input type="submit" class="login-btn" type="Ingresar" />
+	  </form>
+
+    </div>
+  </body>
 </html>

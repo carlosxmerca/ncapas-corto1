@@ -36,6 +36,7 @@ public class AuthController {
 	public String login(@ModelAttribute EmployeeDTO credentials, Model model) {
     	String time = Calendar.getInstance().getTime().toString();
     	model.addAttribute("time", time);
+    	model.addAttribute("users", users);
     	
 		Employee employee = users.stream()
 				.filter(u -> u.getCode().equals(credentials.getCode())).findFirst().orElse(null);
