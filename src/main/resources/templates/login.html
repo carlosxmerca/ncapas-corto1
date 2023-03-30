@@ -42,6 +42,11 @@
         border-radius: 15px;
       }
 
+      input, label{
+          display: block;
+          font-weight: bolder;
+      }
+
       input {
         border: 0;
         width: 25vw;
@@ -55,14 +60,18 @@
     <form action="/auth" method="POST" class="login-container">
       <h2>Bienvenido</h2>
       <div class="username-container">
-        <p class="login-label">Nombre de usuario:</p>
-        <input type="text" name="code" />
+          <label for= "code-label">
+              Nombre de usuario:
+          </label>
+              <input type="text" name="code" id="code-label" required/>
       </div>
       <div class="pass-container">
-        <p class="login-label">Contraseña:</p>
-        <input type="password" name="pass" />
+        <label for="pass-label">
+            Contraseña:
+        </label>
+            <input type="password" name="pass" id="pass-label" required/>
       </div>
-      <input type="submit" class="login-btn" type="Ingresar" />
+      <input type="submit" class="login-btn"/>
     </form>
   </body>
 </html>
