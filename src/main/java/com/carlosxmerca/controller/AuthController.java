@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,11 +16,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.carlosxmerca.model.dto.EmployeeDTO;
 import com.carlosxmerca.model.entity.Employee;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+//@SessionAttributes("employee")
 public class AuthController {
 	
-	private static List<Employee> users = new ArrayList<>();
+	private static final List<Employee> users = new ArrayList<>();
 	private static final boolean ACTIVE = true;
 	private static final boolean INACTIVE = false;
 	private static final boolean ADMIN = true;
@@ -33,17 +36,18 @@ public class AuthController {
     }
     
     @PostMapping("/auth")
-	public String login(@ModelAttribute EmployeeDTO credentials, Model model) {
+	public String login(@ModelAttribute EmployeeDTO credentials, Model model, HttpSession session) {
     	String time = Calendar.getInstance().getTime().toString();
     	model.addAttribute("time", time);
     	model.addAttribute("users", users);
-    	
+
 		Employee employee = users.stream()
-				.filter(u -> u.getCode().equals(credentials.getCode())).findFirst().orElse(null);
-		
-		if (employee == null)
-			return "404";
-		if (!employee.isActive())
+				.filter(u -> u.getCode().equals(credentials.getCode()) && u.getPass().equals(credentials.getPass()))
+				.findFirst()
+				.orElse(null);
+
+
+		if (employee == null || !employee.isActive())
 			return "404";
 		
 		try {
@@ -57,19 +61,25 @@ public class AuthController {
 		}
 		
 		model.addAttribute("user", employee.getNames());
-		
-		return "dashboard";
+		//session.setAttribute("employee", employee);
+		return "/dashboard";
 	}
 	
-    /*
+/*
 	@GetMapping("/dashboard")
-    public String getDashboard(Model model) {
-		String time = Calendar.getInstance().getTime().toString();
-    	model.addAttribute("time", time);
-    	
-    	return "dashboard";
+	public String dashboard(Model model, HttpSession session) {
+		Employee employee = (Employee) session.getAttribute("employee");
+		if (employee != null) {
+			model.addAttribute("employee", employee);
+			String time = Calendar.getInstance().getTime().toString();
+    		model.addAttribute("time", time);
+			System.out.println(employee);
+			return "dashboard";
+		} else {
+			return "redirect:/login";
+		}
     }
-    */
+*/
 	
 	@GetMapping("/login")
     public String getLogin() {
