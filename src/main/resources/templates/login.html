@@ -35,6 +35,7 @@
 
       .login-btn {
         border: 1px solid #124578;
+        width: auto;
         color: #124578;
         background-color: #fff;
         padding: 1vh 3vw 1vh 3vw;
@@ -43,27 +44,25 @@
 
       input {
         border: 0;
-        width: 100%;
+        width: 25vw;
         padding: 1vh 1vw 1vh 1vw;
+        border-radius: 15px;
+        letter-spacing: 1px;
       }
     </style>
   </head>
   <body>
-    <div class="login-container">
+    <form action="/auth" method="POST" class="login-container">
       <h2>Bienvenido</h2>
-      
-      <form action="/auth" method="POST">
-		<div class="username-container">
-	        <p class="login-label">Nombre de usuario:</p>
-	        <input type="text" name="code" />
-	      </div>
-	      <div class="pass-container">
-	        <p class="login-label">Contraseña:</p>
-	        <input type="password" name="pass" />
-	      </div>
-	      <input type="submit" class="login-btn" type="Ingresar" />
-	  </form>
-
-    </div>
+      <div class="username-container">
+        <p class="login-label">Nombre de usuario:</p>
+        <input type="text" name="code" />
+      </div>
+      <div class="pass-container">
+        <p class="login-label">Contraseña:</p>
+        <input type="password" name="pass" />
+      </div>
+      <input type="submit" class="login-btn" type="Ingresar" />
+    </form>
   </body>
 </html>
