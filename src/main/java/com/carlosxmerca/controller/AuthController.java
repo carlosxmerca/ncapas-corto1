@@ -33,25 +33,34 @@ public class AuthController {
     }
     
     @PostMapping("/auth")
-	public String login(@ModelAttribute EmployeeDTO credentials) {
+	public String login(@ModelAttribute EmployeeDTO credentials, Model model) {
+    	String time = Calendar.getInstance().getTime().toString();
+    	model.addAttribute("time", time);
+    	
 		Employee employee = users.stream()
 				.filter(u -> u.getCode().equals(credentials.getCode())).findFirst().orElse(null);
 		
 		if (employee == null)
-			return "redirect:/404";
+			return "404";
 		if (!employee.isActive())
-			return "redirect:/404";
+			return "404";
 		
 		try {
+			Date currentDate = new Date();
 			Date hireDate = new SimpleDateFormat("dd/MM/yyyy").parse(employee.getDateOfHire());
+			if (hireDate.compareTo(currentDate) > 0) {
+				return "404";
+			}
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 		
-			
-		return "redirect:/dashboard";
+		model.addAttribute("user", employee.getNames());
+		
+		return "dashboard";
 	}
 	
+    /*
 	@GetMapping("/dashboard")
     public String getDashboard(Model model) {
 		String time = Calendar.getInstance().getTime().toString();
@@ -59,6 +68,7 @@ public class AuthController {
     	
     	return "dashboard";
     }
+    */
 	
 	@GetMapping("/login")
     public String getLogin() {

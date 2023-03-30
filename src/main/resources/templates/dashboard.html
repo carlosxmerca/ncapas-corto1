@@ -1,4 +1,127 @@
 <!DOCTYPE html>
-<html>
-	<h1>DASHBOARD</h1>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Dashboard</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        font-family: 'Roboto', sans-serif;
+      }
+
+      header {
+        /* width: 100vw; */
+        border-collapse: collapse;
+        background-color: #adbfff;
+        /* border: 1px solid black; */
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2vh 5vw 2vh 5vw;
+      }
+
+      .header-logout-btn {
+        /* height: 100%; */
+        border: 1px solid #124578;
+        color: #124578;
+        background-color: #fff;
+        padding: 1vh 3vw 1vh 3vw;
+        border-radius: 15px;
+      }
+
+      .header-logout-btn:hover {
+        border: 1px solif #fff;
+        color: #fff;
+        background-color: #124578;
+      }
+
+      .main-container {
+        /* width: 10vw; */
+        height: 80vh;
+        /* border: 1px solid #000; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+      }
+
+      .header-data {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      table {
+        border-collapse: collapse;
+        display: block;
+        /* width: 80%; */
+        height: 80%;
+        /* height: 15px; */
+        /* display: inline-block; */
+        overflow: auto;
+        /* display: block; */
+      }
+
+      td,
+      th {
+        text-align: left;
+        border: 1px solid #000;
+        padding: 1vh 5vw 1vh 1vw;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <button class="header-logout-btn">Log out</button>
+      <section class="header-data">
+        <div class="username-div"><h3 class="username-label">{{ user }}</h3></div>
+        <div class="hour-div"><h5 class="hour-label">Hora {{ time }}</h5></div>
+      </section>
+    </header>
+    <section class="main-container">
+      <h1>Bienvenido</h1>
+      <table>
+        <tr>
+          <th>Nombre</th>
+          <th>Fecha de contratacion</th>
+          <th>Rol</th>
+        </tr>
+        <tbody>
+		  {{ #users }}
+          <tr>
+            <td>{{ names }}</td>
+            <td>{{ dateOfHire }}</td>
+            <td>
+			{{#isAdmin}}
+			Administrator
+			{{/isAdmin}}
+			{{^isAdmin}}
+			User
+			{{/isAdmin}}
+			</td>
+          </tr>
+          {{ /users }}
+        </tbody>
+      </table>
+    </section>
+  </body>
 </html>
