@@ -50,11 +50,14 @@ public class AuthController {
 		try {
 			Date currentDate = new Date();
 			Date hireDate = new SimpleDateFormat("dd/MM/yyyy").parse(employee.getDateOfHire());
-			if (hireDate.compareTo(currentDate) > 0) {
+
+			if (hireDate.compareTo(currentDate) >= 0)
 				return "redirect:/404";
-			}
+
+
 		} catch (ParseException e) {
 			e.printStackTrace();
+			return "redirect:/404";
 		}
 		
 		user = employee;
@@ -82,24 +85,7 @@ public class AuthController {
     	
     	return "dashboard";
     }
-	
-/*
-	@GetMapping("/dashboard")
-	public String dashboard(Model model, HttpSession session) {
-		Employee employee = (Employee) session.getAttribute("employee");
-		if (employee != null) {
-			model.addAttribute("employee", employee);
-			String time = Calendar.getInstance().getTime().toString();
-    		model.addAttribute("time", time);
-			System.out.println(employee);
-			return "dashboard";
-		} else {
-			return "redirect:/login";
-		}
-    }
-*/
-        
-	@GetMapping("/login")
+	@GetMapping("/")
     public String getLogin() {
     	return "login";
     }
@@ -108,5 +94,8 @@ public class AuthController {
     public String get404() {
     	return "not-found";
     }
+
+	@GetMapping("/*")
+	public String default404() { return "not-found" ;}
 	
 }
