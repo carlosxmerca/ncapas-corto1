@@ -98,14 +98,14 @@
     <header>
       <a class="header-logout-btn" href="/">Log out</a>
       <section class="header-data">
-        <div class="username-div"><h3 class="username-label">{{ user }}</h3></div>
+        <div class="username-div"><h3 class="username-label">{{ user.names }} {{ user.lastNames }} </h3></div>
         <div class="hour-div"><h5 class="hour-label">Hora {{ time }}</h5></div>
       </section>
     </header>
     <section class="main-container">
       <h1>Bienvenido</h1>
       
-      {{ #isUserAdmin }}
+      {{ #user.isAdmin }}
       <table>
         <tr>
           <th>Nombre</th>
@@ -115,7 +115,7 @@
         <tbody>
 		  {{ #users }}
           <tr>
-            <td>{{ names }}</td>
+            <td>{{ names }} {{ lastNames }}</td>
             <td>{{ dateOfHire }}</td>
             <td>
 			{{#isAdmin}}
@@ -129,7 +129,7 @@
           {{ /users }}
         </tbody>
       </table>
-      {{ /isUserAdmin }}
+      {{ /user.isAdmin }}
       
     </section>
   </body>

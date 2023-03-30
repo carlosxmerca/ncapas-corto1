@@ -80,8 +80,7 @@ public class AuthController {
     	if (user == null)
     		return "redirect:/404";
     	    	
-    	model.addAttribute("user", user.getNames());
-    	model.addAttribute("isUserAdmin", user.isAdmin());
+    	model.addAttribute("user", user);
     	
     	return "dashboard";
     }

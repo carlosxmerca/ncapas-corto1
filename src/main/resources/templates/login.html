@@ -1,83 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <title>Login</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-      }
 
-      html {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        font-family: 'Roboto', sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <title>Login</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
 
-      .login-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        width: 50vw;
-        height: 70vh;
-        background-color: #adbfff;
-        border-radius: 15px;
-      }
+    :root {
+      --box-shadow: 4px 3px 6px 3px rgba(207, 207, 207, 1);
+    }
 
-      .login-btn {
-        border: 1px solid #124578;
-        width: auto;
-        color: #124578;
-        background-color: #fff;
-        padding: 1vh 3vw 1vh 3vw;
-        border-radius: 15px;
-      }
+    body {
+      background-color: #f2f2f2;
+    }
 
-      input, label{
-          display: block;
-          font-weight: bolder;
-      }
+    html {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      font-family: 'Roboto', sans-serif;
+    }
 
-      .login-btn:hover {
-          border: 1px solid #fff;
-          color: #fff;
-          background-color: #124578;
-      }
+    h1 {
+      display: block;
+      margin-top: 2vh;
+      font-size: 30px;
+      color: #5a77fd;
+      line-height: 1.2;
+      text-align: center;
 
-      input {
-        border: 0;
-        width: 25vw;
-        padding: 1vh 1vw 1vh 1vw;
-        border-radius: 15px;
-        letter-spacing: 1px;
-      }
-    </style>
-  </head>
-  <body>
-    <form action="/auth" method="POST" class="login-container">
-      <h2>Bienvenido</h2>
-      <div class="username-container">
-          <label for= "code-label">
-              Nombre de usuario:
-          </label>
-              <input type="text" name="code" id="code-label" required/>
-      </div>
-      <div class="pass-container">
-        <label for="pass-label">
-            Contraseña:
-        </label>
-            <input type="password" name="pass" id="pass-label" required/>
-      </div>
-      <input type="submit" class="login-btn"/>
-    </form>
-  </body>
+    }
+
+    .login-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 50vw;
+      height: 70vh;
+      max-width: 500px;
+      background-color: #FFF;
+      border-radius: 15px;
+    }
+
+    .login-btn {
+      border: 1px solid #124578;
+      width: auto;
+      color: #124578;
+      background-color: #fff;
+      padding: 1vh 3vw 1vh 3vw;
+      border-radius: 5px;
+    }
+
+    input,
+    label {
+      display: block;
+      font-weight: bolder;
+      margin-bottom: 0.5em;
+    }
+
+    .login-btn:hover {
+      border: 1px solid #fff;
+      color: #fff;
+      background-color: #124578;
+    }
+    .username-container{
+      width: 50%;
+    }
+    .pass-container{
+      width: 50%;
+    }
+    input {
+      border: 0;
+      width: 100%;
+      padding: 1vh 1vw 1vh 1vw;
+      border-radius: 5px;
+      letter-spacing: 1px;
+      box-shadow: var(--box-shadow);
+    }
+  </style>
+</head>
+
+<body>
+  <form action="/auth" method="POST" class="login-container">
+    <h1>Bienvenido</h1>
+    <div class="username-container">
+      <label for="code-label">
+        Nombre de usuario
+      </label>
+      <input type="text" name="code" id="code-label" required />
+    </div>
+    <div class="pass-container">
+      <label for="pass-label">
+        Contraseña
+      </label>
+      <input type="password" name="pass" id="pass-label" required />
+    </div>
+    <input type="submit" class="login-btn" />
+  </form>
+</body>
+
 </html>
